@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Oxfinder</string>
+    <string name="ui_compund_rct">Compound/Reaction:</string>
+    <string name="ui_find_ox_states">Find oxidation states</string>
+    <string name="ui_calc_molar_mass">Calculate molar mass</string>
+    <string name="ui_balance">Balance</string>
+    <string name="ui_detailed_output">Detailed Output</string>
+    <string name="ui_result">Result</string>
 </resources>
