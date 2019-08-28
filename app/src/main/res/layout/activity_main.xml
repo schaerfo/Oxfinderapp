@@ -6,44 +6,52 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
-    <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="395dp"
-            android:layout_height="715dp" android:layout_marginTop="8dp"
+    <TextView
+            android:text="@string/ui_compund_rct"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" android:id="@+id/textView"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="8dp" android:layout_marginStart="8dp" android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp" android:layout_marginRight="8dp">
-        <TextView
-                android:text="@string/ui_compund_rct"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/textView"/>
-        <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:text=""
-                android:ems="10"
-                android:id="@+id/editText"/>
-        <Button
-                android:text="@string/ui_find_ox_states"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/findOxStatesButton"/>
-        <Button
-                android:text="@string/ui_calc_molar_mass"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/calcMolarMassButton"/>
-        <Button
-                android:text="@string/ui_balance"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/balanceButton"/>
-        <CheckBox
-                android:text="@string/ui_detailed_output"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/detailedOutputCheckBox"/>
-        <TextView
-                android:text="@string/ui_result"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/textView2"/>
-    </LinearLayout>
+            android:layout_marginTop="8dp" app:layout_constraintEnd_toEndOf="parent"/>
+    <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text=""
+            android:ems="10"
+            android:id="@+id/equationInput"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    <Button
+            android:text="@string/ui_find_ox_states"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" android:id="@+id/findOxStatesButton"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/equationInput"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    <Button
+            android:text="@string/ui_calc_molar_mass"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" android:id="@+id/calcMolarMassButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/findOxStatesButton"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    <Button
+            android:text="@string/ui_balance"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" android:id="@+id/balanceButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calcMolarMassButton"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    <CheckBox
+            android:text="@string/ui_detailed_output"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" android:id="@+id/detailedOutputCheckBox"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/balanceButton"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    <TextView
+            android:text="@string/ui_result"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" android:id="@+id/textView2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailedOutputCheckBox"
+            app:layout_constraintEnd_toEndOf="parent"/>
 </android.support.constraint.ConstraintLayout>
