@@ -25,8 +25,6 @@ class MainActivity :  AppCompatActivity(){
     }
 
     fun readElementList(){
-        val files = assets.list("/")
-        println("${files}")
         val r = JsonReader(InputStreamReader(assets.open("element_list.json")))
         val newElementList: MutableList<ElementInfo> = mutableListOf()
         r.beginArray()
