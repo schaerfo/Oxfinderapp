@@ -7,14 +7,14 @@ import java.io.InputStreamReader
 
 class MainActivity :  AppCompatActivity(){
     data class ElementInfo (
-        var atomicNumber: Int,
-        var name: String,
-        var period: Int,
-        var block: Char,
-        var atomicMass: Double,
-        var en: Double,
-        var preferredState: Int,
-        var states: Array<Int>
+        val atomicNumber: Int,
+        val name: String,
+        val period: Int,
+        val block: Char,
+        val atomicMass: Double,
+        val en: Double,
+        val preferredState: Int,
+        val states: Array<Int>
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
