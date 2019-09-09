@@ -7,7 +7,6 @@ import java.io.InputStreamReader
 
 class MainActivity :  AppCompatActivity(){
     data class ElementInfo (
-        var symbol: String,
         var atomicNumber: Int,
         var name: String,
         var period: Int,
@@ -21,12 +20,12 @@ class MainActivity :  AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        this.readElementList()
+        mElementCatalog = this.readCatalog()
     }
 
-    fun readElementList(){
+    private fun readCatalog(): Map<String, ElementInfo>{
         val r = JsonReader(InputStreamReader(assets.open("element_list.json")))
-        val newElementList: MutableList<ElementInfo> = mutableListOf()
+        val newCatalog: MutableMap<String, ElementInfo> = mutableMapOf()
         r.beginArray()
         while (r.hasNext()){
             var symbol: String = ""
@@ -58,12 +57,12 @@ class MainActivity :  AppCompatActivity(){
                 }
             }
             r.endObject()
-            newElementList.add(ElementInfo(symbol = symbol, atomicNumber = atomicNumber, name = name, period = period,
-                block = block, atomicMass = atomicMass, en = en, preferredState = preferredState, states = states.toTypedArray()))
+            newCatalog[symbol] = ElementInfo(atomicNumber = atomicNumber, name = name, period = period,
+                block = block, atomicMass = atomicMass, en = en, preferredState = preferredState, states = states.toTypedArray())
         }
         r.endArray()
-        elementList = newElementList.toTypedArray()
+        return newCatalog
     }
 
-    var elementList: Array<ElementInfo>? = null
+    var mElementCatalog: Map<String, ElementInfo>? = null
 }
