@@ -26,9 +26,9 @@ class MainActivity :  AppCompatActivity(){
     private fun readCatalog(): Map<String, ElementInfo>{
         val r = JsonReader(InputStreamReader(assets.open("element_list.json")))
         val newCatalog: MutableMap<String, ElementInfo> = mutableMapOf()
-        r.beginArray()
+        r.beginObject()
         while (r.hasNext()){
-            var symbol: String = ""
+            val symbol = r.nextName()
             var atomicNumber: Int = 0
             var name: String = ""
             var period: Int = 0
@@ -53,14 +53,13 @@ class MainActivity :  AppCompatActivity(){
                             states.add(r.nextInt())
                         r.endArray()
                     }
-                    "symbol" -> symbol = r.nextString()
                 }
             }
             r.endObject()
             newCatalog[symbol] = ElementInfo(atomicNumber = atomicNumber, name = name, period = period,
                 block = block, atomicMass = atomicMass, en = en, preferredState = preferredState, states = states.toTypedArray())
         }
-        r.endArray()
+        r.endObject()
         return newCatalog
     }
 
