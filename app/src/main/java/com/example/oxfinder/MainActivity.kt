@@ -1,8 +1,11 @@
 package com.example.oxfinder
 
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.util.JsonReader
+import android.view.View
+import kotlinx.android.synthetic.main.activity_main.*
 import java.io.InputStreamReader
 
 class MainActivity :  AppCompatActivity(){
@@ -16,6 +19,11 @@ class MainActivity :  AppCompatActivity(){
         val preferredState: Int,
         val states: Array<Int>
     )
+
+    class Ion (atoms: List<Pair<String, Int?>>, charge: Int = 0) {
+        val mAtoms: MutableList<Pair<String, Int?>> = atoms.toMutableList()
+        val mCharge: Int = charge
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +69,27 @@ class MainActivity :  AppCompatActivity(){
         }
         r.endObject()
         return newCatalog
+    }
+
+    private fun ionFromString(s: String): Ion {
+        val charge: Int = when {
+            s.contains(',') -> {
+                val chargeStr = s.substring(s.indexOf(',')+1 until s.length)
+                (chargeStr.drop(1) + chargeStr.first())
+                    .toInt()
+            }
+            s.contains('+') -> 1
+            s.contains('-') -> -1
+            else -> 0
+        }
+
+        return Ion(listOf(), charge)
+    }
+
+    fun calculateMolarMass(view: View) {
+        val s = equationInput.text.toString()
+        val molecule = ionFromString(s)
+        resultDisplay.text = "${molecule.mCharge}"
     }
 
     var mElementCatalog: Map<String, ElementInfo>? = null

@@ -15,7 +15,7 @@
     <EditText
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
+            android:inputType="text"
             android:text=""
             android:ems="10"
             android:id="@+id/equationInput"
@@ -31,6 +31,7 @@
             android:text="@string/ui_calc_molar_mass"
             android:layout_width="0dp"
             android:layout_height="wrap_content" android:id="@+id/calcMolarMassButton"
+            android:onClick="calculateMolarMass"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/findOxStatesButton"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -50,7 +51,7 @@
     <TextView
             android:text="@string/ui_result"
             android:layout_width="0dp"
-            android:layout_height="wrap_content" android:id="@+id/textView2"
+            android:layout_height="wrap_content" android:id="@+id/resultDisplay"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/detailedOutputCheckBox"
             app:layout_constraintEnd_toEndOf="parent"/>
