@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ui_compund_rct">Verbindung/Reaktion:</string>
+    <string name="ui_find_ox_states">Oxidationszahlen finden</string>
+    <string name="ui_calc_molar_mass">Molare Masse berechnen</string>
+    <string name="ui_balance">Ausgleichen</string>
+    <string name="ui_detailed_output">Detaillierte Ausgabe</string>
+    <string name="ui_result">Ergebnis:</string>
+</resources>
