@@ -74,9 +74,12 @@ class MainActivity :  AppCompatActivity(){
     private fun ionFromString(s: String): Ion {
         val charge: Int = when {
             s.contains(',') -> {
-                val chargeStr = s.substring(s.indexOf(',')+1 until s.length)
-                (chargeStr.drop(1) + chargeStr.first())
-                    .toInt()
+                var chargeStr = s.substring(s.indexOf(',')+1 until s.length)
+
+                if (charArrayOf('-', '+').any{ chargeStr.endsWith(it) })
+                    chargeStr = chargeStr.last() + chargeStr.dropLast(1)
+
+                chargeStr.toInt()
             }
             s.contains('+') -> 1
             s.contains('-') -> -1
