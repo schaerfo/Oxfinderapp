@@ -91,8 +91,14 @@ class MainActivity :  AppCompatActivity(){
 
     fun calculateMolarMass(view: View) {
         val s = equationInput.text.toString()
-        val molecule = ionFromString(s)
-        resultDisplay.text = "${molecule.mCharge}"
+        try {
+            val molecule = ionFromString(s)
+            resultDisplay.text = "${molecule.mCharge}"
+        } catch (e: NumberFormatException) {
+            println("Incorrectly formatted charge: " + e.localizedMessage)
+        } catch (e: Exception) {
+            println(e.localizedMessage)
+        }
     }
 
     var mElementCatalog: Map<String, ElementInfo>? = null
