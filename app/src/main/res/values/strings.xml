@@ -6,4 +6,7 @@
     <string name="ui_balance">Balance</string>
     <string name="ui_detailed_output">Detailed Output</string>
     <string name="ui_result">Result:</string>
+    <string name="ui_ok" translatable="false">OK</string>
+    <string name="ui_error">Error</string>
+    <string name="ui_incorrect_charge_format">Incorrectly formatted charge</string>
 </resources>

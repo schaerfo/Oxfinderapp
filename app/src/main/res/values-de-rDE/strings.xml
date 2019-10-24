@@ -6,4 +6,6 @@
     <string name="ui_balance">Ausgleichen</string>
     <string name="ui_detailed_output">Detaillierte Ausgabe</string>
     <string name="ui_result">Ergebnis:</string>
+    <string name="ui_error">Fehler</string>
+    <string name="ui_incorrect_charge_format">Fehlerhaft formatierte Ladung</string>
 </resources>

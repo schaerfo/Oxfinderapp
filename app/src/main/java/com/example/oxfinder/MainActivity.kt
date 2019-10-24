@@ -95,9 +95,11 @@ class MainActivity :  AppCompatActivity(){
             val molecule = ionFromString(s)
             resultDisplay.text = "${molecule.mCharge}"
         } catch (e: NumberFormatException) {
-            println("Incorrectly formatted charge: " + e.localizedMessage)
+            val dialog = ErrorDialog("${resources.getString(R.string.ui_incorrect_charge_format)}: ${e.localizedMessage}")
+            dialog.show(supportFragmentManager, "message")
         } catch (e: Exception) {
-            println(e.localizedMessage)
+            val dialog = ErrorDialog(e.localizedMessage)
+            dialog.show(supportFragmentManager, "message")
         }
     }
 
