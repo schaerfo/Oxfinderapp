@@ -16,7 +16,7 @@ class ErrorDialog (msg : String) : DialogFragment() {
 
         builder.setMessage(messageStr)
             .setTitle(R.string.ui_error)
-            .setPositiveButton(R.string.ui_ok, DialogInterface.OnClickListener{dialog, id ->
+            .setPositiveButton(R.string.ui_ok, DialogInterface.OnClickListener{ dialog, _ ->
                 dialog.dismiss()
             })
 

@@ -89,6 +89,7 @@ class MainActivity :  AppCompatActivity(){
         return Ion(listOf(), charge)
     }
 
+    @Suppress("UNUSED_PARAMETER")
     fun calculateMolarMass(view: View) {
         val s = equationInput.text.toString()
         try {
@@ -103,5 +104,5 @@ class MainActivity :  AppCompatActivity(){
         }
     }
 
-    var mElementCatalog: Map<String, ElementInfo>? = null
+    private var mElementCatalog: Map<String, ElementInfo>? = null
 }
