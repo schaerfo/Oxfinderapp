@@ -1,7 +1,6 @@
 package com.example.oxfinder
 
 import android.os.Bundle
-import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.util.JsonReader
 import android.view.View
@@ -71,58 +70,64 @@ class MainActivity :  AppCompatActivity(){
         return newCatalog
     }
 
-    private fun ionFromString(s: String): Ion {
-        var workingCopy = s
-
-        val charge: Int = when {
-            s.contains(',') -> {
+    private fun extractCharge(s: String): Pair<Int, String>{
+        return when {
+            s.contains(',')  -> {
                 val i = s.indexOf(',')
-                workingCopy = s.substring(0 until i)
                 var chargeStr = s.substring(i+1 until s.length)
 
                 if (charArrayOf('-', '+').any{ chargeStr.endsWith(it) })
                     chargeStr = chargeStr.last() + chargeStr.dropLast(1)
 
-                chargeStr.toInt()
+                Pair(chargeStr.toInt(), s.substring(0 until i))
             }
             s.endsWith('+') -> {
-                workingCopy = s.dropLast(1)
-                1
+                Pair(1, s.dropLast(1))
             }
             s.endsWith('-') -> {
-                workingCopy = s.dropLast(1)
-                -1
+                Pair(-1, s.dropLast(1))
             }
-            else -> 0
+            else -> Pair(0, s)
         }
+    }
 
-        while (workingCopy.contains('(')) {
-            val start = workingCopy.indexOf('(')
-            var end = workingCopy.indexOf(')')
+    private fun resolveParentheses(s: String): String{
+        var res = s
+
+        while (res.contains('(')) {
+            val start = res.indexOf('(')
+            var end = res.indexOf(')')
             if (end == -1)
                 throw Exception(resources.getString(R.string.ui_insufficient_closing_braces))
 
-            val before = workingCopy.substring(0 until start)
-            val between = workingCopy.substring(start+1 until end)
+            val before = res.substring(0 until start)
+            val between = res.substring(start+1 until end)
 
             var number = 1
             var firstDigit = true
-            while (workingCopy[end+1].isDigit()) {
+            while (res[end+1].isDigit()) {
                 val charToInt = { c: Char ->
                     c.toInt() - '0'.toInt()
                 }
 
                 number = if (firstDigit) {
                     firstDigit = false
-                    workingCopy[end + 1].let(charToInt)
-                } else 10 * number + workingCopy[end + 1].let(charToInt)
+                    res[end + 1].let(charToInt)
+                } else 10 * number + res[end + 1].let(charToInt)
                 ++end
             }
 
-            val after = workingCopy.substring(end+1)
-            workingCopy = before + between.repeat(number) + after
+            val after = res.substring(end+1)
+            res = before + between.repeat(number) + after
         }
 
+        return res
+    }
+
+    private fun ionFromString(s: String): Ion {
+        var (charge, workingCopy) = this.extractCharge(s)
+        workingCopy = this.resolveParentheses(workingCopy)
+        println(workingCopy)
         return Ion(listOf(), charge)
     }
 
