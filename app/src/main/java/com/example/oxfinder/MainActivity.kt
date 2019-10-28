@@ -105,7 +105,7 @@ class MainActivity :  AppCompatActivity(){
 
             var number = 1
             var firstDigit = true
-            while (res[end+1].isDigit()) {
+            while (res.length > end+1 && res[end + 1].isDigit()) {
                 val charToInt = { c: Char ->
                     c.toInt() - '0'.toInt()
                 }
