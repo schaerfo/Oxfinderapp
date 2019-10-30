@@ -11,4 +11,5 @@
     <string name="ui_incorrect_charge_format">Incorrectly formatted charge</string>
     <string name="ui_insufficient_closing_braces">Insufficient number of closing braces</string>
     <string name="ui_exception">An exception has been encountered</string>
+    <string name="ui_unknown_character">Unknown character encountered</string>
 </resources>

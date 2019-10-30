@@ -91,6 +91,10 @@ class MainActivity :  AppCompatActivity(){
         }
     }
 
+    private val charToInt = { c: Char ->
+        c.toInt() - '0'.toInt()
+    }
+
     private fun resolveParentheses(s: String): String{
         var res = s
 
@@ -106,10 +110,6 @@ class MainActivity :  AppCompatActivity(){
             var number = 1
             var firstDigit = true
             while (res.length > end+1 && res[end + 1].isDigit()) {
-                val charToInt = { c: Char ->
-                    c.toInt() - '0'.toInt()
-                }
-
                 number = if (firstDigit) {
                     firstDigit = false
                     res[end + 1].let(charToInt)
@@ -124,11 +124,37 @@ class MainActivity :  AppCompatActivity(){
         return res
     }
 
+    private fun readElements(s: String): List<String> {
+        val res = mutableListOf<String>()
+        var currElement : String? = null
+        for (c in s){
+            when {
+                c.isUpperCase() -> {
+                    currElement?.let { res.add(it) }
+                    currElement = c.toString()
+                }
+                c.isLowerCase() -> currElement += c
+                c.isDigit() -> {
+                    currElement?.let {
+                        for (i in 0 until charToInt(c)) res.add(it)
+                    }
+                    currElement = null
+                }
+                else -> throw Exception("${resources.getString(R.string.ui_unknown_character)}: $c")
+            }
+        }
+        currElement?.let { res.add(it) }
+        return res
+    }
+
     private fun ionFromString(s: String): Ion {
         var (charge, workingCopy) = this.extractCharge(s)
         workingCopy = this.resolveParentheses(workingCopy)
-        println(workingCopy)
-        return Ion(listOf(), charge)
+        val elementList = readElements(workingCopy)
+
+        val resList = mutableListOf<Pair<String, Int?>>()
+        elementList.forEach { resList.add(Pair(it, null)) }
+        return Ion(resList, charge)
     }
 
     @Suppress("UNUSED_PARAMETER")
