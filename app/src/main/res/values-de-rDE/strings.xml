@@ -11,4 +11,5 @@
     <string name="ui_insufficient_closing_braces">Nicht genug schließende Klammern</string>
     <string name="ui_exception">Eine Ausnahme ist aufgetreten</string>
     <string name="ui_unknown_character">Unbekanntes Zeichen aufgetreten</string>
+    <string name="ui_unknown_element">Unbekanntes Element</string>
 </resources>

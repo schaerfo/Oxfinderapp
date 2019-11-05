@@ -12,4 +12,6 @@
     <string name="ui_insufficient_closing_braces">Insufficient number of closing braces</string>
     <string name="ui_exception">An exception has been encountered</string>
     <string name="ui_unknown_character">Unknown character encountered</string>
+    <string name="ui_unknown_element">Unknown element</string>
+    <string name="ui_g_per_mol" translatable="false">g/mol</string>
 </resources>

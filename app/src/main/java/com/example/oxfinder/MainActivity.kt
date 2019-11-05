@@ -1,5 +1,6 @@
 package com.example.oxfinder
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.JsonReader
@@ -22,6 +23,15 @@ class MainActivity :  AppCompatActivity(){
     class Ion (atoms: List<Pair<String, Int?>>, charge: Int = 0) {
         val mAtoms: MutableList<Pair<String, Int?>> = atoms.toMutableList()
         val mCharge: Int = charge
+
+        fun calculateMolarMass(catalog: Map<String, ElementInfo>): Double {
+            var result = 0.0
+            mAtoms.forEach {
+                println(it.first)
+                result += catalog[it.first]?.atomicMass ?: 0.0
+            }
+            return result
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -162,7 +172,7 @@ class MainActivity :  AppCompatActivity(){
         val s = equationInput.text.toString()
         try {
             val molecule = ionFromString(s)
-            resultDisplay.text = "${molecule.mCharge}"
+            resultDisplay.text = "%.3f %s".format(mElementCatalog?.let { molecule.calculateMolarMass(it) }, resources.getString(R.string.ui_g_per_mol))
         } catch (e: NumberFormatException) {
             e.printStackTrace(System.err)
             val dialog = ErrorDialog("${resources.getString(R.string.ui_incorrect_charge_format)}: ${e.localizedMessage}")
