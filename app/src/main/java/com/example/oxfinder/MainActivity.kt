@@ -20,6 +20,16 @@ class MainActivity :  AppCompatActivity(){
         val states: Array<Int>
     )
 
+    class InsufficientBracketsException : Exception()
+
+    class UnexpectedCharacterException (c : Char) : Exception(){
+        private val mChar = c
+
+        override fun getLocalizedMessage(): String {
+            return String(charArrayOf(mChar))
+        }
+    }
+
     class Ion (atoms: List<Pair<String, Int?>>, charge: Int = 0) {
         val mAtoms: MutableList<Pair<String, Int?>> = atoms.toMutableList()
         val mCharge: Int = charge
@@ -112,7 +122,7 @@ class MainActivity :  AppCompatActivity(){
             val start = res.indexOf('(')
             var end = res.indexOf(')')
             if (end == -1)
-                throw Exception(resources.getString(R.string.ui_insufficient_closing_braces))
+                throw InsufficientBracketsException()
 
             val before = res.substring(0 until start)
             val between = res.substring(start+1 until end)
@@ -150,7 +160,7 @@ class MainActivity :  AppCompatActivity(){
                     }
                     currElement = null
                 }
-                else -> throw Exception("${resources.getString(R.string.ui_unknown_character)}: $c")
+                else -> throw UnexpectedCharacterException(c)
             }
         }
         currElement?.let { res.add(it) }
@@ -167,6 +177,7 @@ class MainActivity :  AppCompatActivity(){
         return Ion(resList, charge)
     }
 
+    @SuppressLint("SetTextI18n")
     @Suppress("UNUSED_PARAMETER")
     fun calculateMolarMass(view: View) {
         val s = equationInput.text.toString()
@@ -176,6 +187,14 @@ class MainActivity :  AppCompatActivity(){
         } catch (e: NumberFormatException) {
             e.printStackTrace(System.err)
             val dialog = ErrorDialog("${resources.getString(R.string.ui_incorrect_charge_format)}: ${e.localizedMessage}")
+            dialog.show(supportFragmentManager, "message")
+        } catch (e: InsufficientBracketsException){
+            e.printStackTrace(System.err)
+            val dialog = ErrorDialog(resources.getString(R.string.ui_insufficient_closing_braces))
+            dialog.show(supportFragmentManager, "message")
+        } catch (e: UnexpectedCharacterException) {
+            e.printStackTrace(System.err)
+            val dialog = ErrorDialog("${resources.getString(R.string.ui_unexpected_character)}: ${e.localizedMessage}")
             dialog.show(supportFragmentManager, "message")
         } catch (e: Exception) {
             e.printStackTrace(System.err)
