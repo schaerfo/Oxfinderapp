@@ -32,13 +32,13 @@ class MainActivity :  AppCompatActivity(){
         r.beginObject()
         while (r.hasNext()){
             val symbol = r.nextName()
-            var atomicNumber: Int = 0
-            var name: String = ""
-            var period: Int = 0
-            var block: Char = '0'
-            var atomicMass: Double = 0.0
-            var en: Double = 0.0
-            var preferredState: Int = 0
+            var atomicNumber = 0
+            var name = ""
+            var period = 0
+            var block = '0'
+            var atomicMass = 0.0
+            var en = 0.0
+            var preferredState = 0
             val states: MutableList<Int> = mutableListOf()
             r.beginObject()
             while (r.hasNext()){
