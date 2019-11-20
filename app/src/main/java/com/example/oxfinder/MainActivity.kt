@@ -85,6 +85,10 @@ class MainActivity :  AppCompatActivity(){
             e.printStackTrace(System.err)
             val dialog = ErrorDialog("${resources.getString(R.string.ui_unexpected_character)}: ${e.localizedMessage}")
             dialog.show(supportFragmentManager, "message")
+        } catch (e: Ion.UnknownElementException) {
+            e.printStackTrace(System.err)
+            val dialog = ErrorDialog("${resources.getString(R.string.ui_unknown_element)}: ${e.localizedMessage}")
+            dialog.show(supportFragmentManager, "message")
         } catch (e: Exception) {
             e.printStackTrace(System.err)
             val dialog = ErrorDialog(" ${resources.getString(R.string.ui_exception)}: ${e.localizedMessage}")
