@@ -9,16 +9,16 @@ import android.support.v4.app.DialogFragment
 
 @SuppressLint("ValidFragment")
 class ErrorDialog (msg : String) : DialogFragment() {
-    val messageStr = msg;
+    private val messageStr = msg
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(activity)
 
         builder.setMessage(messageStr)
             .setTitle(R.string.ui_error)
-            .setPositiveButton(R.string.ui_ok, DialogInterface.OnClickListener{ dialog, _ ->
+            .setPositiveButton(R.string.ui_ok) { dialog, _ ->
                 dialog.dismiss()
-            })
+            }
 
         return builder.create()
     }
