@@ -11,13 +11,15 @@ class Ion (atoms: List<Pair<String, Int?>>, charge: Int = 0) {
         }
     }
 
-    class UnknownElementException (el : String) : Exception(){
+    open class UnknownElementException (el : String) : Exception(){
         private val mElement = el
 
         override fun getLocalizedMessage(): String {
             return mElement
         }
     }
+
+    class MolarMassUnknownException (el: String) : UnknownElementException(el)
 
     private val mAtoms: MutableList<Pair<String, Int?>> = atoms.toMutableList()
     private val mCharge: Int = charge
@@ -29,7 +31,8 @@ class Ion (atoms: List<Pair<String, Int?>>, charge: Int = 0) {
     fun calculateMolarMass(catalog: Map<String, MainActivity.ElementInfo>): Double {
         var result = 0.0
         mAtoms.forEach {
-            result += catalog[it.first]?.atomicMass ?: throw UnknownElementException(it.first)
+            val m = catalog[it.first]?.atomicMass ?: throw UnknownElementException(it.first)
+            result += if (m != 0.0) m else throw MolarMassUnknownException(it.first)
         }
         return result
     }

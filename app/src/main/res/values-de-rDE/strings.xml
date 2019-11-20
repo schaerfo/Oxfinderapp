@@ -12,4 +12,5 @@
     <string name="ui_exception">Eine Ausnahme ist aufgetreten</string>
     <string name="ui_unexpected_character">Unerwartetes Zeichen aufgetreten</string>
     <string name="ui_unknown_element">Unbekanntes Element</string>
+    <string name="ui_unknown_molar_mass">Molare Masse von Element %1$s ist unbekannt.</string>
 </resources>
