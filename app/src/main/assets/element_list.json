@@ -377,6 +377,18 @@
             2
         ]
     },
+    "La": {
+        "atomicmass": 138.91000366210938,
+        "atomicno": 57,
+        "block": "f",
+        "en": 1.100000023841858,
+        "name": "Lanthan",
+        "period": 6,
+        "prefstate": 3,
+        "states": [
+            3
+        ]
+    },
     "Li": {
         "atomicmass": 6.940999984741211,
         "atomicno": 3,
@@ -487,7 +499,7 @@
         ]
     },
     "Ni": {
-        "atomicmass": 58.69,
+        "atomicmass": 58.689998626708984,
         "atomicno": 28,
         "block": "d",
         "en": 1.75,
